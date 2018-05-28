@@ -1,20 +1,21 @@
-public class UnionFind {
+public class QuickFind {
 
     //此处用一个id数组来表示每个节点的连通性。
     //当节点连接到一起的时候那么它们有相同的id号
     private int[] mIds;
     //表示描述的节点的规模,总共有多少个
+    //The total num of array
     private int mCount;
 
     //构造中实例化用来保存连通状态的数组,并初始化连通状态
     //传入的并查集要表示多少个元素
-    public UnionFind(int capacity){
+    public QuickFind(int capacity){
         mCount = capacity;
         mIds = new int[mCount];
         //初始为每个点都不连通,此处i不同就表示不连通,想要连通是就把i设置为同一个即可
         //同时也隐含着mCount各节点元素,每个节点元素的对应索引0...n，连通性,此处默认赋值都不连通
         for (int i = 0; i < mCount; i++) {
-            mIds[i] = i+5;//注意id代表的含义不要和索引混了
+            mIds[i] = i;//注意id代表的含义不要和索引混了
         }
     }
     //寻找p索引对应的连通性的状态,可以看到查找某个元素的连通状态码
@@ -26,6 +27,10 @@ public class UnionFind {
         //直接返回当前索引所对应的元素的连通性,
         //此处设计的是每个连通性默认是索引号.
         return mIds[p];
+    }
+
+    public int[] printnum(){
+        return mIds;
     }
     //此处设计是用的数组存储元素,传入的是数组内元素的索引,注意这个数组不是指mIds.
     public boolean isConnected(int p,int q){
